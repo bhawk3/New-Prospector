@@ -44,7 +44,8 @@ router.post("/", async (req, res) => {
         }; 
         let collection = await db.collection("records");
         let result = await collection.insertOne(newDocument);
-        res.send(result).status(204)
+        const created = await collection.findOne({ _id: result.insertedId });
+        res.status(201).send(created);
     }
     catch (err) {
         console.log(err)

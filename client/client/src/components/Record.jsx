@@ -81,6 +81,13 @@ export default function Record() {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      // try to read created/updated record for confirmation
+      try {
+        const data = await response.json();
+        console.log('Server response:', data);
+      } catch (err) {
+        console.warn('No JSON response body');
+      }
     } catch (error) {
       console.error('A problem occurred adding or updating a record: ', error);
     } finally {
