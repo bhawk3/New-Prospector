@@ -21,6 +21,10 @@ const Record = (props) => (
     <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
       {displayLevel(props.record.level)}
     </td>
+
+    {/*The alignment of the buttons are off because theyre <td>. If you add
+    the additional information as their <td> as you will soon then the spacing
+    they should line up */}
     <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
       <div className="flex gap-1">
         <Link
@@ -98,14 +102,20 @@ export default function RecordList() {
                   Name
                 </th>
                 <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                  Position
+                  Status
                 </th>
                 <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
-                  Level
+                  Source
+                </th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Opportunity
+                </th>
+                <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                  Next Action
                 </th>
                 <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
                   Action
-                </th>  
+                </th>
               </tr>
             </thead>
             <tbody className="[&amp;_tr:last-child]:border-0">
