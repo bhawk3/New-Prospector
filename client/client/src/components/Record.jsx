@@ -4,8 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 export default function Record() {
   const [form, setForm] = useState({
     name: "",
-    position: "",
-    level: "",
+    source: "",
+    opportunity: "",
+    action: ""
   });
   const [isNew, setIsNew] = useState(true);
   const params = useParams();
@@ -116,6 +117,7 @@ export default function Record() {
           </div>
 
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 ">
+{/* Start of Name */}
             <div className="sm:col-span-4">
               <label
                 htmlFor="name"
@@ -137,86 +139,105 @@ export default function Record() {
                 </div>
               </div>
             </div>
-            <div className="sm:col-span-4">
+{/* Need to add status here */}
+<div className="sm:col-span-4">
               <label
-                htmlFor="position"
+                htmlFor="status"
                 className="block text-sm font-medium leading-6 text-slate-900"
               >
-                Position
+                Status
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <select
+                    name="status"
+                    id="status"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    value={form.status}
+                    onChange={(e) => updateForm({ status: e.target.value })}
+                  >
+                    <option value="New">New</option>
+                    <option value="Qualified">Qualified</option>
+                    <option value="Demo Scheduled">Demo Scheduled</option>
+                    <option value="Proposal Sent">Proposal Sent</option>
+                    <option value="Negotiation">Negotiation</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+{/* Start of Source */}
+
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="source"
+                className="block text-sm font-medium leading-6 text-slate-900"
+              >
+                Source
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                   <input
                     type="text"
-                    name="position"
-                    id="position"
+                    name="source"
+                    id="source"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="Developer Advocate"
-                    value={form.position}
-                    onChange={(e) => updateForm({ position: e.target.value })}
+                    placeholder="Website, LinkedIn, etc"
+                    value={form.source}
+                    onChange={(e) => updateForm({ source: e.target.value })}
                   />
                 </div>
               </div>
             </div>
-            <div>
-              <fieldset className="mt-4">
-                <legend className="sr-only">Position Options</legend>
-                <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-                  <div className="flex items-center">
-                    <input
-                      id="positionIntern"
-                      name="positionOptions"
-                      type="radio"
-                      value="Intern"
-                      className="h-4 w-4 border-slate-300 text-slate-600 focus:ring-slate-600 cursor-pointer"
-                      checked={form.level === "Intern"}
-                      onChange={(e) => updateForm({ level: e.target.value })}
-                    />
-                    <label
-                      htmlFor="positionIntern"
-                      className="ml-3 block text-sm font-medium leading-6 text-slate-900 mr-4"
-                    >
-                      Intern
-                    </label>
-                    <input
-                      id="positionJunior"
-                      name="positionOptions"
-                      type="radio"
-                      value="Junior"
-                      className="h-4 w-4 border-slate-300 text-slate-600 focus:ring-slate-600 cursor-pointer"
-                      checked={form.level === "Junior"}
-                      onChange={(e) => updateForm({ level: e.target.value })}
-                    />
-                    <label
-                      htmlFor="positionJunior"
-                      className="ml-3 block text-sm font-medium leading-6 text-slate-900 mr-4"
-                    >
-                      Junior
-                    </label>
-                    <input
-                      id="positionSenior"
-                      name="positionOptions"
-                      type="radio"
-                      value="Senior"
-                      className="h-4 w-4 border-slate-300 text-slate-600 focus:ring-slate-600 cursor-pointer"
-                      checked={form.level === "Senior"}
-                      onChange={(e) => updateForm({ level: e.target.value })}
-                    />
-                    <label
-                      htmlFor="positionSenior"
-                      className="ml-3 block text-sm font-medium leading-6 text-slate-900 mr-4"
-                    >
-                      Senior
-                    </label>
-                  </div>
+{/* Start of Opportunity */}
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="opportunity"
+                className="block text-sm font-medium leading-6 text-slate-900"
+              >
+                Opportunity
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <input
+                    type="number"
+                    name="opportunity"
+                    id="opportunity"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="$50,000, $20,000, etc"
+                    value={form.opportunity}
+                    onChange={(e) => updateForm({ opportunity: e.target.value })}
+                  />
                 </div>
-              </fieldset>
+              </div>
             </div>
+{/* Start of Next Action */}
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="action"
+                className="block text-sm font-medium leading-6 text-slate-900"
+              >
+                Next Action
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <input
+                    type="text"
+                    name="action"
+                    id="action"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="Outreach, Send Proposal, Negotiation, etc"
+                    value={form.action}
+                    onChange={(e) => updateForm({ action: e.target.value })}
+                  />
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
         <input
           type="submit"
-          value="Save Employee Record"
+          value="Save Lead"
           className="inline-flex items-center justify-center whitespace-nowrap text-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-slate-100 hover:text-accent-foreground h-9 rounded-md px-3 cursor-pointer mt-4"
         />
       </form>

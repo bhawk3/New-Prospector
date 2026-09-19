@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function displayLevel(level) {
-  if (!level) return "";
-  const normalized = level.toString().trim().toLowerCase();
-  if (normalized === "intern") return "Intern";
-  if (normalized === "junior") return "Junior";
-  if (normalized === "senior") return "Senior";
-  return level;
-}
+
 
 const Record = (props) => (
   <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
@@ -16,11 +9,19 @@ const Record = (props) => (
       {props.record.name}
     </td>
     <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-      {props.record.position}
+        {props.record.status}
     </td>
     <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-      {displayLevel(props.record.level)}
+      {props.record.source}
     </td>
+    <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+        ${props.record.opportunity}
+    </td>
+    <td className="p-4 align-middle [&amp;:has({role=checkbox})]:pr-0">
+        {props.record.action}
+    </td>
+    
+
 
     {/*The alignment of the buttons are off because theyre <td>. If you add
     the additional information as their <td> as you will soon then the spacing
