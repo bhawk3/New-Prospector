@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 export default function Record() {
   const [form, setForm] = useState({
     name: "",
+    status: "",
     source: "",
     opportunity: "",
     action: ""
@@ -103,6 +104,7 @@ export default function Record() {
     opportunity: "#ACEDA4",
     action: "#FEDFC7"
   }
+  console.log(form)
 
   // This following section will display the form that takes the input from the user.
   return (
@@ -156,13 +158,14 @@ export default function Record() {
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <select
+                  <select required
                     name="status"
                     id="status"
-                    className={`block flex-1 border-0 ${statusColors[form.status]} bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6`}
+                    className={`block flex-1 border-0 [&:has([value=${form.status}])]:bg-[${statusColors[form.status]}] bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6`}
                     value={form.status}
                     onChange={(e) => updateForm({ status: e.target.value })}
                   >
+                    <option value="">Select Option</option>
                     <option value="New">New</option>
                     <option value="Qualified">Qualified</option>
                     <option value="Demo Scheduled">Demo Scheduled</option>
