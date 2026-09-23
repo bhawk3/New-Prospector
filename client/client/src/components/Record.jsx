@@ -13,13 +13,16 @@ export default function Record() {
   const params = useParams();
   const navigate = useNavigate();
 
-  function normalizeLevel(level) {
-    if (!level) return "";
-    const normalized = level.toString().trim().toLowerCase();
-    if (normalized === "intern") return "Intern";
-    if (normalized === "junior") return "Junior";
-    if (normalized === "senior") return "Senior";
-    return level;
+  function normalizeStatus(status) {
+    if (!status) return "";
+    const normalized = status.toString().trim().toLowerCase();
+    if (normalized === "") return "Select Option";
+    if (normalized === "new") return "New";
+    if (normalized === "qualified") return "Qualified";
+    if (normalized === "demo scheduled") return "Demo Scheduled";
+    if (normalized === "proposal sent") return "Proposal Sent";
+    if (normalized === "negotation") return "Negotation";
+    return status;
   }
 
   useEffect(() => {
@@ -41,7 +44,7 @@ export default function Record() {
         navigate("/");
         return;
       }
-      setForm({ ...record, level: normalizeLevel(record.level) });
+      setForm({ ...record, status: normalizeStatus(record.status) });
     }
     fetchData();
     return;
@@ -93,7 +96,7 @@ export default function Record() {
     } catch (error) {
       console.error('A problem occurred adding or updating a record: ', error);
     } finally {
-      setForm({ name: "", position: "", level: "" });
+      setForm({ name: "", status: "", source: "", opportunity: "", action: "" });
       navigate("/");
     }
   }
@@ -104,7 +107,6 @@ export default function Record() {
     opportunity: "#ACEDA4",
     action: "#FEDFC7"
   }
-  console.log(form)
 
   // This following section will display the form that takes the input from the user.
   return (
