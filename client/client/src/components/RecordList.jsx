@@ -1,25 +1,50 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const statusColors = {
+  "": "#Fdfdfd",
+  "New": "#BFF1FF",
+  "Qualified": "#FADADD",
+  "Demo Scheduled": "#ACEDA4",
+  "Proposal Sent": "#FEDFC7",
+  "Negotation": "#F9F871",
+};
 
+const statusClasses = {
+  "": "bg-white",
+  "New": "bg-sky-100 text-sky-900",
+  "Qualified": "bg-pink-100 text-pink-900",
+  "Demo Scheduled": "bg-emerald-100 text-emerald-900",
+  "Proposal Sent": "bg-orange-100 text-orange-900",
+  "Negotation": "bg-yellow-100 text-yellow-900",
+};
 
-const Record = (props) => (
-  <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
-    <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-      {props.record.name}
-    </td>
-    <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-        {props.record.status}
-    </td>
-    <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
-      {props.record.source}
-    </td>
-    <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+const Record = (props) => {
+  const statusClass = statusClasses[props.record.status] ?? "bg-white text-slate-900";
+  const statusBg = statusColors[props.record.status] ?? "#Fdfdfd";
+
+  return (
+    <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+      <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+        {props.record.name}
+      </td>
+      <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+        <span
+          className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${statusClass}`}
+          style={{ backgroundColor: statusBg }}
+        >
+          {props.record.status}
+        </span>
+      </td>
+      <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+        {props.record.source}
+      </td>
+      <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
         ${props.record.opportunity}
-    </td>
-    <td className="p-4 align-middle [&amp;:has({role=checkbox})]:pr-0">
+      </td>
+      <td className="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
         {props.record.action}
-    </td>
+      </td>
     
 
 
@@ -45,9 +70,10 @@ const Record = (props) => (
           Delete
         </button>
       </div>
-    </td>
-  </tr>
-);
+      </td>
+    </tr>
+  );
+};
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);

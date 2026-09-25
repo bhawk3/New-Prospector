@@ -90,6 +90,7 @@ export default function Record() {
       try {
         const data = await response.json();
         console.log('Server response:', data);
+      // eslint-disable-next-line no-unused-vars
       } catch (err) {
         console.warn('No JSON response body');
       }
@@ -102,11 +103,22 @@ export default function Record() {
   }
 
   const statusColors = {
-    name: "#BFF1FF",
-    source: "#FADADD",
-    opportunity: "#ACEDA4",
-    action: "#FEDFC7"
-  }
+    "": "#Fdfdfd",
+    "New": "#BFF1FF",
+    "Qualified": "#FADADD",
+    "Demo Scheduled": "#ACEDA4",
+    "Proposal Sent": "#FEDFC7",
+    "Negotation": "#F9F871",
+  };
+
+  const statusClasses = {
+    "": "bg-white",
+    "New": "bg-sky-100",
+    "Qualified": "bg-pink-100",
+    "Demo Scheduled": "bg-emerald-100",
+    "Proposal Sent": "bg-orange-100",
+    "Negotation": "bg-yellow-100",
+  };
 
   // This following section will display the form that takes the input from the user.
   return (
@@ -163,7 +175,8 @@ export default function Record() {
                   <select required
                     name="status"
                     id="status"
-                    className={`block flex-1 border-0 [&:has([value=${form.status}])]:bg-[${statusColors[form.status]}] bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6`}
+                    className={`block flex-1 border-0 ${statusClasses[form.status] ?? "bg-white"} py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6`}
+                    style={{ backgroundColor: statusColors[form.status] ?? "#Fdfdfd" }}
                     value={form.status}
                     onChange={(e) => updateForm({ status: e.target.value })}
                   >
