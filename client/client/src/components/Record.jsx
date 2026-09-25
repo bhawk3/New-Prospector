@@ -150,7 +150,7 @@ export default function Record() {
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
+                  <input required
                     type="text"
                     name="name"
                     id="name"
@@ -201,7 +201,7 @@ export default function Record() {
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
+                  <input required
                     type="text"
                     name="source"
                     id="source"
@@ -223,7 +223,7 @@ export default function Record() {
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
+                  <input required
                     type="number"
                     name="opportunity"
                     id="opportunity"
@@ -245,7 +245,7 @@ export default function Record() {
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
+                  <input required
                     type="text"
                     name="action"
                     id="action"
