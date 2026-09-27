@@ -22,6 +22,33 @@ router.get("/", async (req, res) => {
     res.send(results).status(200);
 })
 
+//This section will get the summary data for the infobar
+router.get("/summary", async (req, res) => {
+    try {
+        let collection = await db.collection("records")
+
+        const results = await db.collection('records').aggregate([
+            {
+                $facet: {
+                    totalCount: [{ $count: "count"}],
+                    totalQualified: [{
+                        $match: {
+                            status: "Qualified" 
+                        } 
+                    }]
+                }
+            }
+        ]).toArray()
+
+        const totalLeads = result[0].totalCount[0]?.count || 0
+        const totalQualifiedLeads = result[0].totalQualified[0]?.count || 0
+    } 
+    catch (err) {
+        res.status(500).json({error: "There has been an error"})
+    }
+
+})
+
 //This section will help you get a single record by id
 router.get("/:id", async (req, res) => {
     let collection = await db.collection("records")
