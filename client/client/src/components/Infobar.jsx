@@ -10,7 +10,7 @@ useEffect(() => {
 
 
     async function infoBarLeads() {
-        const res = await fetch("/http://localhost:5050/records/summary")
+        const res = await fetch("http://localhost:5050/records/summary")
 
         if (!res.ok) {
              const message = `An error occurred: ${res.statusText}`;
@@ -18,17 +18,19 @@ useEffect(() => {
         return;
         }
 
-        const infoLeads = await res.json()
-        setInfoLeads(infoLeads)
+        const infoLead = await res.json()
+        setInfoLeads(infoLead)
     }
     infoBarLeads()
-
+return;
 
 }, [])
 
+console.log(infoLeads)
+
     return (
         <>
-            <h1>Hello bruh</h1>
+            <h1>Hello</h1>
         </>
     )
 }

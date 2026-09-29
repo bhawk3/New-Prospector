@@ -25,9 +25,7 @@ router.get("/", async (req, res) => {
 //This section will get the summary data for the infobar
 router.get("/summary", async (req, res) => {
     try {
-        let collection = await db.collection("records")
-
-        const results = await db.collection('records').aggregate([
+        const result = await db.collection('records').aggregate([
             {
                 $facet: {
                     totalCount: [{ $count: "count"}],
@@ -38,10 +36,17 @@ router.get("/summary", async (req, res) => {
                     }]
                 }
             }
+            
         ]).toArray()
+
 
         const totalLeads = result[0].totalCount[0]?.count || 0
         const totalQualifiedLeads = result[0].totalQualified[0]?.count || 0
+        res.json({
+            totalLeads,
+            totalQualifiedLeads
+        })
+   
     } 
     catch (err) {
         res.status(500).json({error: "There has been an error"})
