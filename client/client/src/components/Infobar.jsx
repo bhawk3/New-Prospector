@@ -30,7 +30,16 @@ console.log(infoLeads)
 
     return (
         <>
-            <h1>Hello</h1>
+            <div className="flex gap-4">
+                <p className="border rounded-lg p-5 text-center">
+                    <span className="text-sm">Total Leads</span> <br />
+                    <span className="text-lg">{infoLeads.totalLeads}</span>
+                </p>
+                <p className="border rounded-lg p-5 text-center">
+                    <span className="text-sm">Total Qualified Leads</span><br /> 
+                    <span className="text-lg">{infoLeads.totalQualifiedLeads}</span>
+                </p>
+            </div>
         </>
     )
 }
