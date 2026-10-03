@@ -39,6 +39,10 @@ console.log(infoLeads)
                     <span className="text-sm">Total Qualified Leads</span><br /> 
                     <span className="text-lg">{infoLeads.totalQualifiedLeads}</span>
                 </p>
+                <p className="border rounded-lg p-5 text-center">
+                    <span className="text-sm">Total Qualified Leads</span><br /> 
+                    <span className="text-lg">{infoLeads.totalPipelineValue}</span>
+                </p>
             </div>
         </>
     )

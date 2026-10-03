@@ -22,8 +22,7 @@ router.get("/", async (req, res) => {
     res.send(results).status(200);
 })
 
-const distinctStatuses = await db.collection('records').distinct('status', {});
-console.log("All unique statuses currently in your DB:", distinctStatuses);
+
 
 
 //This section will get the summary data for the infobar
@@ -35,19 +34,32 @@ router.get("/summary", async (req, res) => {
                     totalCount: [{ $count: "count"}],
                     totalQualified: [
                         { $match: { status: "Qualified" } },
-                         { $count: "Qualified" } 
-                        ]
+                         { $count: "count" } 
+                        ],
+                    totalValue: [{
+                        $group: {
+                        _id: null,
+                        totalValue: {
+                            $sum: {
+                                $toDouble: { $ifNull: ["$opportunity", 0] }
+                            }
+                        } 
+                        
+                    }
+                }]
                 }
             }
             
         ]).toArray()
 
 
-        const totalLeads = result[0].totalCount[0]?.count || 0
+        const totalLeads = result[0]?.totalCount[0]?.count || 0
         const totalQualifiedLeads = result[0]?.totalQualified[0]?.count || 0
+        const totalPipelineValue = result[0]?.totalValue[0]?.totalValue || 0
         res.json({
             totalLeads,
-            totalQualifiedLeads
+            totalQualifiedLeads,
+            totalPipelineValue
         })
     
     } 
