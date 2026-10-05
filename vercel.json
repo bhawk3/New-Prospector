@@ -11,7 +11,8 @@
     }
   },
   "rewrites": [
-    { "source": "/records(?:/(.*))?", "destination": { "service": "app" } },
+    { "source": "/records", "destination": { "service": "app" } },
+    { "source": "/records/(.*)", "destination": { "service": "app" } },
     { "source": "/(.*)", "destination": { "service": "client" } }
   ],
   "env": {
