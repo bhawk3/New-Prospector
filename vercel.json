@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "app": {
+      "root": ".",
+      "framework": "express"
+    },
+    "client": {
+      "root": "client/client",
+      "framework": "vite"
+    }
+  },
+  "rewrites": [
+    { "source": "/records(?:/(.*))?", "destination": { "service": "app" } },
+    { "source": "/(.*)", "destination": { "service": "client" } }
+  ],
+  "env": {
+    "ATLAS_URI": "@atlas_uri",
+    "NODE_ENV": "production"
+  }
+}
