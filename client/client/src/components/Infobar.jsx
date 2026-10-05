@@ -10,7 +10,7 @@ useEffect(() => {
 
 
     async function infoBarLeads() {
-        const res = await fetch("http://localhost:5050/records/summary")
+        const res = await fetch("/records/summary")
 
         if (!res.ok) {
              const message = `An error occurred: ${res.statusText}`;
