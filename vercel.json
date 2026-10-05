@@ -16,7 +16,6 @@
     { "source": "/(.*)", "destination": { "service": "client" } }
   ],
   "env": {
-    "ATLAS_URI": "@atlas_uri",
     "NODE_ENV": "production"
   }
 }
