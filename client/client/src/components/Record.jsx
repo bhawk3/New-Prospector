@@ -123,7 +123,7 @@ export default function Record() {
   // This following section will display the form that takes the input from the user.
   return (
     <>
-      <h3 className="text-lg font-semibold p-4">Create/Update Employee Record</h3>
+      <h3 className="text-lg font-semibold p-4">Create/Update Lead Record</h3>
       <form
         onSubmit={onSubmit}
         className="border rounded-lg overflow-hidden p-4"
@@ -131,13 +131,13 @@ export default function Record() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-slate-900/10 pb-12 md:grid-cols-2">
           <div>
             <h2 className="text-base font-semibold leading-7 text-slate-900">
-              Employee Info
+              Lead Info
             </h2>
             <p className="mt-1 text-sm leading-6 text-slate-600">
               This information will be displayed publicly so be careful what you
               share.
             </p>
-          </div>
+          </div>          
 
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 ">
 {/* Start of Name */}
