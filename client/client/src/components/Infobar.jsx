@@ -41,7 +41,7 @@ console.log(infoLeads)
                 </p>
                 <p className="border rounded-lg p-5 text-center">
                     <span className="text-sm">Total Pipeline Value</span><br /> 
-                    <span className="text-lg">${infoLeads.totalPipelineValue}</span>
+                    <span className="text-lg">$ {infoLeads.totalPipelineValue}</span>
                 </p>
             </div>
         </>
